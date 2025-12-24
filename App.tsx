@@ -4,6 +4,7 @@ import { ALCOHOL_DAMAGES, DRUG_DAMAGES, DRIVING_DANGERS, LEGAL_INFO, HELP_RESOUR
 import InfoCard from './components/InfoCard';
 import FeedbackChat from './components/FeedbackChat';
 import AIChat from './components/AIChat';
+import SpeakButton from './components/SpeakButton';
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,9 @@ const App: React.FC = () => {
         <section className="bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 text-white py-24 px-4 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
           <div className="container mx-auto text-center max-w-4xl relative z-10">
+            <div className="flex justify-center mb-6">
+              <SpeakButton text="העתיד שלך חשוב מכדי לבזבז אותו על רגע של טעות. המדריך המלא למניעת שימוש בסמים ואלכוהול בקרב בני נוער ומבוגרים. ידע הוא כוח – בחרו בחיים." className="bg-indigo-800/50 text-white hover:text-white" />
+            </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md">העתיד שלך חשוב מכדי לבזבז אותו על רגע של טעות</h2>
             <p className="text-xl md:text-2xl text-indigo-100 mb-10 leading-relaxed font-light">
               המדריך המלא למניעת שימוש בסמים ואלכוהול בקרב בני נוער ומבוגרים. ידע הוא כוח – בחרו בחיים.
@@ -45,7 +49,10 @@ const App: React.FC = () => {
         <section id="damages" className="py-24 bg-slate-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">נזקים בריאותיים וחברתיים</h2>
+              <div className="flex items-center justify-center gap-4 mb-2">
+                <h2 className="text-3xl font-bold text-slate-900">נזקים בריאותיים וחברתיים</h2>
+                <SpeakButton text="נזקים בריאותיים וחברתיים. כאן תוכלו ללמוד על ההשלכות החמורות של שימוש באלכוהול ובסמים על הגוף והנפש." />
+              </div>
               <div className="w-24 h-1 bg-indigo-500 mx-auto rounded-full"></div>
             </div>
 
@@ -74,7 +81,10 @@ const App: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-col lg:flex-row gap-16 items-center">
               <div className="lg:w-1/2">
-                <h2 className="text-3xl font-bold text-slate-900 mb-8">סמים, אלכוהול ונהיגה - שילוב קטלני</h2>
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="text-3xl font-bold text-slate-900">סמים, אלכוהול ונהיגה - שילוב קטלני</h2>
+                  <SpeakButton text="סמים, אלכוהול ונהיגה - שילוב קטלני. הכביש לא סולח. נהיגה תחת השפעה היא לא רק עבירה על החוק, היא סכנת חיים ממשית לך ולסביבתך." />
+                </div>
                 <p className="text-lg text-slate-600 mb-10 leading-relaxed font-light">
                   הכביש לא סולח. נהיגה תחת השפעה היא לא רק עבירה על החוק, היא סכנת חיים ממשית לך ולסביבתך.
                 </p>
@@ -82,8 +92,11 @@ const App: React.FC = () => {
                   {DRIVING_DANGERS.map((item, idx) => (
                     <div key={idx} className="flex gap-5 group items-start">
                       <div className="text-4xl bg-slate-100 p-3 rounded-2xl group-hover:bg-indigo-50 transition-colors">{item.icon}</div>
-                      <div>
-                        <h4 className="font-bold text-slate-800 text-lg mb-1">{item.title}</h4>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-bold text-slate-800 text-lg">{item.title}</h4>
+                          <SpeakButton text={`${item.title}. ${item.description}`} />
+                        </div>
                         <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
                       </div>
                     </div>
@@ -106,13 +119,19 @@ const App: React.FC = () => {
         <section id="enforcement" className="py-24 bg-indigo-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-20">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">טכנולוגיות אכיפה: ינשוף ומהירות</h2>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <h2 className="text-3xl font-bold text-slate-900">טכנולוגיות אכיפה: ינשוף ומהירות</h2>
+                <SpeakButton text="טכנולוגיות אכיפה: ינשוף ומהירות. גלו כיצד המשטרה אוכפת את החוק ושומרת על בטיחות בדרכים." />
+              </div>
               <div className="w-24 h-1 bg-indigo-500 mx-auto rounded-full"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {ENFORCEMENT_TECH.map((item, idx) => (
-                <div key={idx} className="bg-white p-10 rounded-3xl shadow-xl border border-indigo-50 flex flex-col items-center text-center hover:-translate-y-2 transition-transform">
+                <div key={idx} className="bg-white p-10 rounded-3xl shadow-xl border border-indigo-50 flex flex-col items-center text-center hover:-translate-y-2 transition-transform relative group">
+                  <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <SpeakButton text={`${item.title}. ${item.description}`} />
+                  </div>
                   <div className="text-6xl mb-8 bg-indigo-50 w-24 h-24 flex items-center justify-center rounded-full">{item.icon}</div>
                   <h3 className="text-xl font-bold text-indigo-950 mb-3">{item.title}</h3>
                   <div className="bg-indigo-100 text-indigo-800 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">{item.method}</div>
@@ -127,13 +146,19 @@ const App: React.FC = () => {
         <section id="legal" className="py-24 bg-slate-950 text-white relative">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
-              <h2 className="text-3xl font-bold mb-4">מה אומר החוק בישראל?</h2>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <h2 className="text-3xl font-bold">מה אומר החוק בישראל?</h2>
+                <SpeakButton text="מה אומר החוק בישראל? כאן מפורטים העונשים הקבועים בחוק על עבירות נהיגה בשכרות והחזקת סמים." className="text-indigo-400 hover:text-white" />
+              </div>
               <div className="w-24 h-1 bg-indigo-500 mx-auto rounded-full"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {LEGAL_INFO.map((item, idx) => (
-                <div key={idx} className="bg-slate-900 p-10 rounded-3xl border border-slate-800 hover:border-indigo-500 transition-all shadow-2xl">
+                <div key={idx} className="bg-slate-900 p-10 rounded-3xl border border-slate-800 hover:border-indigo-500 transition-all shadow-2xl relative group">
+                  <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <SpeakButton text={`${item.offense}. העונש המרבי הוא ${item.punishment}. ${item.details}`} />
+                  </div>
                   <h3 className="text-xl font-bold mb-4 text-indigo-400">{item.offense}</h3>
                   <div className="bg-red-500/20 text-red-400 px-4 py-1 rounded-full text-xs font-bold inline-block mb-6">
                     עונש: {item.punishment}
@@ -149,7 +174,10 @@ const App: React.FC = () => {
         <section id="help" className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto bg-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-200">
-              <div className="md:w-5/12 p-12 bg-indigo-700 text-white flex flex-col justify-center">
+              <div className="md:w-5/12 p-12 bg-indigo-700 text-white flex flex-col justify-center relative">
+                <div className="absolute top-4 left-4">
+                  <SpeakButton text="אתם לא לבד. אם אתם מרגישים שאתם או מישהו קרוב אליכם מאבדים שליטה, יש למי לפנות. עזרה מקצועית ודיסקרטית זמינה עבורכם." className="bg-white/10 text-white hover:text-white" />
+                </div>
                 <h2 className="text-4xl font-bold mb-8 leading-tight">אתם לא לבד.</h2>
                 <p className="text-indigo-100 text-lg leading-relaxed mb-10 font-light">
                   אם אתם מרגישים שאתם או מישהו קרוב אליכם מאבדים שליטה, יש למי לפנות. עזרה מקצועית ודיסקרטית זמינה עבורכם.
@@ -158,8 +186,11 @@ const App: React.FC = () => {
               </div>
               <div className="md:w-7/12 p-8 md:p-16 space-y-10">
                 {HELP_RESOURCES.map((res, idx) => (
-                  <div key={idx} className="group border-b border-slate-200 last:border-0 pb-8 last:pb-0">
-                    <h3 className="font-bold text-slate-900 text-2xl mb-2 group-hover:text-indigo-600 transition-colors">{res.name}</h3>
+                  <div key={idx} className="group border-b border-slate-200 last:border-0 pb-8 last:pb-0 relative">
+                    <div className="flex items-center gap-4 mb-2">
+                      <h3 className="font-bold text-slate-900 text-2xl group-hover:text-indigo-600 transition-colors">{res.name}</h3>
+                      <SpeakButton text={`${res.name}. ${res.description}. טלפון: ${res.phone}`} />
+                    </div>
                     <p className="text-slate-500 text-base mb-4 font-light leading-relaxed">{res.description}</p>
                     <div className="flex items-center justify-between">
                       <a href={`tel:${res.phone}`} className="bg-indigo-50 text-indigo-700 px-6 py-2 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
