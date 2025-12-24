@@ -24,7 +24,11 @@ const SpeakButton: React.FC<SpeakButtonProps> = ({ text, className = "" }) => {
       onClick={handleSpeak}
       disabled={isPlaying}
       title="הקרא טקסט"
-      className={`p-2 rounded-full hover:bg-slate-100 transition-colors flex items-center justify-center ${isPlaying ? 'animate-pulse text-indigo-500' : 'text-slate-400 hover:text-indigo-600'} ${className}`}
+      className={`p-2 rounded-full transition-all flex items-center justify-center border border-transparent
+        ${isPlaying 
+          ? 'animate-pulse text-indigo-500 bg-white/90' 
+          : 'animate-soft-pulse text-slate-400 hover:text-indigo-600 bg-white/80 hover:bg-white hover:scale-110 shadow-sm border-slate-100'
+        } ${className}`}
     >
       {isPlaying ? (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

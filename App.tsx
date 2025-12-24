@@ -30,7 +30,7 @@ const App: React.FC = () => {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900 text-white py-24 px-4 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-          <div className="container mx-auto text-center max-w-4xl relative z-10">
+          <div className="container mx-auto text-center max-w-4xl relative z-10 animate-hero-slide-up">
             <div className="flex justify-center mb-6">
               <SpeakButton text="העתיד שלך חשוב מכדי לבזבז אותו על רגע של טעות. המדריך המלא למניעת שימוש בסמים ואלכוהול בקרב בני נוער ומבוגרים. ידע הוא כוח – בחרו בחיים." className="bg-indigo-800/50 text-white hover:text-white" />
             </div>
