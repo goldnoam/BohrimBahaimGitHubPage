@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ALCOHOL_DAMAGES, DRUG_DAMAGES, DRIVING_DANGERS, LEGAL_INFO, HELP_RESOURCES, ENFORCEMENT_TECH } from './constants';
 import InfoCard from './components/InfoCard';
 import FeedbackChat from './components/FeedbackChat';
+import AIChat from './components/AIChat';
 import SpeakButton from './components/SpeakButton';
 
 const App: React.FC = () => {
@@ -13,11 +14,11 @@ const App: React.FC = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const navLinks = [
-    { href: "#damages", label: "נזקים" },
-    { href: "#driving", label: "נהיגה בטוחה" },
-    { href: "#enforcement", label: "טכנולוגיות אכיפה" },
-    { href: "#legal", label: "החוק בישראל" },
-    { href: "#help", label: "קבלת עזרה" },
+    { href: "damages", label: "נזקים" },
+    { href: "driving", label: "נהיגה בטוחה" },
+    { href: "enforcement", label: "טכנולוגיות אכיפה" },
+    { href: "legal", label: "החוק בישראל" },
+    { href: "help", label: "קבלת עזרה" },
   ];
 
   const heroTitle = "העתיד שלך חשוב מכדי לבזבז אותו על רגע של טעות";
@@ -26,14 +27,10 @@ const App: React.FC = () => {
   // Handle scroll to top visibility
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      setShowScrollTop(window.scrollY > 400);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,10 +41,27 @@ const App: React.FC = () => {
     });
   };
 
+  // Helper for smooth scrolling with header offset
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      closeMobileMenu();
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100" role="banner">
+      <header className="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100" role="banner">
         <div className="container mx-auto px-4 py-3 md:py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-indigo-200 shadow-lg">ב</div>
@@ -59,7 +73,8 @@ const App: React.FC = () => {
             {navLinks.map(link => (
               <a 
                 key={link.href} 
-                href={link.href} 
+                href={`#${link.href}`}
+                onClick={(e) => scrollToSection(e, link.href)}
                 className="hover:text-indigo-600 transition-colors focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none rounded-md px-1"
               >
                 {link.label}
@@ -91,8 +106,8 @@ const App: React.FC = () => {
               {navLinks.map(link => (
                 <a 
                   key={link.href} 
-                  href={link.href} 
-                  onClick={closeMobileMenu}
+                  href={`#${link.href}`}
+                  onClick={(e) => scrollToSection(e, link.href)}
                   className="text-slate-700 font-medium text-lg border-b border-slate-50 pb-2 active:text-indigo-600 focus-visible:outline-none focus-visible:bg-slate-50"
                 >
                   {link.label}
@@ -118,8 +133,20 @@ const App: React.FC = () => {
               {heroDescription}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 px-6">
-              <a href="#damages" className="bg-indigo-500 hover:bg-indigo-400 text-white px-8 py-3 md:py-4 rounded-xl font-bold text-lg transition-all shadow-xl focus-visible:ring-4 focus-visible:ring-indigo-300 focus-visible:outline-none active:scale-95">למד על הנזקים</a>
-              <a href="#help" className="bg-white hover:bg-slate-100 text-indigo-900 px-8 py-3 md:py-4 rounded-xl font-bold text-lg transition-all shadow-xl focus-visible:ring-4 focus-visible:ring-slate-300 focus-visible:outline-none active:scale-95">צריך עזרה?</a>
+              <a 
+                href="#damages" 
+                onClick={(e) => scrollToSection(e, "damages")}
+                className="bg-indigo-500 hover:bg-indigo-400 text-white px-8 py-3 md:py-4 rounded-xl font-bold text-lg transition-all shadow-xl focus-visible:ring-4 focus-visible:ring-indigo-300 focus-visible:outline-none active:scale-95"
+              >
+                למד על הנזקים
+              </a>
+              <a 
+                href="#help" 
+                onClick={(e) => scrollToSection(e, "help")}
+                className="bg-white hover:bg-slate-100 text-indigo-900 px-8 py-3 md:py-4 rounded-xl font-bold text-lg transition-all shadow-xl focus-visible:ring-4 focus-visible:ring-slate-300 focus-visible:outline-none active:scale-95"
+              >
+                צריך עזרה?
+              </a>
             </div>
           </div>
         </section>
@@ -309,7 +336,7 @@ const App: React.FC = () => {
         <button
           onClick={scrollToTop}
           aria-label="חזור למעלה"
-          className="fixed bottom-20 left-4 md:bottom-24 md:left-6 z-50 bg-white text-indigo-600 w-12 h-12 rounded-full shadow-2xl border border-slate-100 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-110 active:scale-90 focus-visible:ring-4 focus-visible:ring-indigo-300 focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2"
+          className="fixed bottom-24 left-4 md:bottom-28 md:left-6 z-50 bg-white text-indigo-600 w-12 h-12 rounded-full shadow-2xl border border-slate-100 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-110 active:scale-90 focus-visible:ring-4 focus-visible:ring-indigo-300 focus-visible:outline-none animate-in fade-in slide-in-from-bottom-2"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -319,6 +346,9 @@ const App: React.FC = () => {
 
       {/* Floating Feedback Component */}
       <FeedbackChat />
+      
+      {/* Floating AI Consultation Component */}
+      <AIChat />
     </div>
   );
 };

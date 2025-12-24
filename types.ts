@@ -19,12 +19,6 @@ export interface LegalInfo {
   details: string;
 }
 
-// Added ChatMessage interface to define roles for Gemini API integration
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-}
-
 export interface FeedbackMessage {
   id: string;
   role: 'user' | 'system';
@@ -36,4 +30,10 @@ export interface EnforcementInfo {
   description: string;
   method: string;
   icon: string;
+}
+
+// Added ChatMessage interface to fix the error in AIChat.tsx
+export interface ChatMessage {
+  role: 'user' | 'model';
+  text: string;
 }

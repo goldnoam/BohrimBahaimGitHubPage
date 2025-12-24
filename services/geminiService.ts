@@ -1,3 +1,4 @@
+
 import { GoogleGenAI } from "@google/genai";
 
 const SYSTEM_INSTRUCTION = `אתה יועץ חינוכי מומחה מטעם אתר "בוחרים בחיים".
@@ -7,14 +8,13 @@ const SYSTEM_INSTRUCTION = `אתה יועץ חינוכי מומחה מטעם א�
 אם שואלים אותך על עזרה, הפנה תמיד לגורמים רשמיים כמו ער"ן (1201) או אל-סם.
 אל תעודד שימוש בשום צורה, גם לא "שימוש אחראי". המסר הוא הימנעות.`;
 
+/**
+ * Gets a response from the Gemini AI model.
+ * Adheres strictly to @google/genai SDK guidelines.
+ */
 export async function getGeminiResponse(userPrompt: string, history: { role: 'user' | 'model', parts: { text: string }[] }[] = []) {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    console.error("API_KEY is missing from environment.");
-    return "שירות הייעוץ אינו זמין כרגע (חסר מפתח גישה).";
-  }
-
-  const ai = new GoogleGenAI({ apiKey });
+  // Always initialize GoogleGenAI with the apiKey named parameter using process.env.API_KEY
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   try {
     const response = await ai.models.generateContent({
@@ -30,6 +30,7 @@ export async function getGeminiResponse(userPrompt: string, history: { role: 'us
       }
     });
 
+    // Access the .text property directly as it is a getter, not a method.
     return response.text || "מצטער, חלה שגיאה בעיבוד הבקשה. אנא נסה שוב מאוחר יותר.";
   } catch (error) {
     console.error("Gemini API Error:", error);
