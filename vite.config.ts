@@ -2,6 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/BohrimBahaim/', // This must match your repo name!
+  base: '/BohrimBahaim/', // This tells Vite the site is in a subfolder
   plugins: [react()],
 })
