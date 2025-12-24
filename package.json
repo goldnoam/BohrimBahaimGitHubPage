@@ -22,4 +22,9 @@
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.0.0"
   }
+  "scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist",
+  
+  }
 }
