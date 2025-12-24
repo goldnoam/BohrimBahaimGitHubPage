@@ -1,4 +1,3 @@
-
 export interface ResourceLink {
   name: string;
   description: string;
@@ -30,10 +29,4 @@ export interface EnforcementInfo {
   description: string;
   method: string;
   icon: string;
-}
-
-// Added ChatMessage interface to fix the error in AIChat.tsx
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
 }

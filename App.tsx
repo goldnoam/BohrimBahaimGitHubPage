@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { ALCOHOL_DAMAGES, DRUG_DAMAGES, DRIVING_DANGERS, LEGAL_INFO, HELP_RESOURCES, ENFORCEMENT_TECH } from './constants';
 import InfoCard from './components/InfoCard';
 import FeedbackChat from './components/FeedbackChat';
-import AIChat from './components/AIChat';
 import SpeakButton from './components/SpeakButton';
 
 const App: React.FC = () => {
@@ -346,9 +344,6 @@ const App: React.FC = () => {
 
       {/* Floating Feedback Component */}
       <FeedbackChat />
-      
-      {/* Floating AI Consultation Component */}
-      <AIChat />
     </div>
   );
 };
