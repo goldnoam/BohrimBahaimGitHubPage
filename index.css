@@ -1,0 +1,19 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-family: 'Assistant', 'Heebo', sans-serif;
+  }
+}
+
+.chat-message-user {
+  @apply bg-indigo-600 text-white rounded-2xl rounded-tr-none px-4 py-2 shadow-sm animate-message-in;
+}
+
+.chat-message-system {
+  @apply bg-white text-slate-700 rounded-2xl rounded-tl-none px-4 py-2 shadow-sm border border-slate-100 animate-message-in;
+}
