@@ -1,6 +1,6 @@
 
 {
-  "homepage": "https://goldnoam.github.io/BohrimBahaim",
+  "homepage": "https://goldnoam.github.io/BohrimBahaimGitHubPage/",
   "name": "choosing-life-prevention",
   "version": "1.0.0",
   "scripts": {
@@ -22,7 +22,5 @@
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.0.0"
   }
-  "scripts": {
-  "build": "vite build"
-}
+
 }
