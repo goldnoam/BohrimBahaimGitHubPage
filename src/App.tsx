@@ -354,7 +354,7 @@ const App: React.FC = () => {
         </button>
       )}
 
-      <FeedbackChat />
+     
     </div>
   );
 };
